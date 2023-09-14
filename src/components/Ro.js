@@ -1,18 +1,16 @@
 import React from "react";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./App.css";
-import Header from "./components/Header";
-import Body from "./components/Body";
-import About from "./components/About";
-import Contact from "./components/Contact";
-import Error from "./components/Error";
-import Menu from "./components/Menu";
+import App from "../App"; // Update the import path
+import About from "./About"; // Update the import path
+import Contact from "./Contact"; // Update the import path
+import Error from "./Error"; // Update the import path
+import Body from "./Body";
 
-const App = () => {
+export const Ro = () => {
   const appRouter = createBrowserRouter([
     {
       path: "/",
-      element: <Outlet />,
+      element: <App />,
       children: [
         {
           path: "/",
@@ -26,21 +24,24 @@ const App = () => {
           path: "/contact",
           element: <Contact />,
         },
-        {
-          path: "/restaurant/:resId",
-          element: <Menu />,
-        },
       ],
+      errorElement: <Error />,
+    },
+    {
+      path: "/about",
+      element: <About />,
+    },
+    {
+      path: "/contact",
+      element: <Contact />,
     },
   ]);
 
   return (
-    <div className="App">
-      <Header />
-      <Outlet />
+    <div>
       <RouterProvider router={appRouter} />
     </div>
   );
 };
 
-export default App;
+export default Ro;
